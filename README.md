@@ -2,7 +2,7 @@
 
 A block-world theme for the Claude Code desktop app. It paints the app in earthy dirt tones and puts a living scene behind the conversation: a little miner who acts out what the agent is doing, under a sky that follows the time of day.
 
-![Block Shift: the mascot hammering at the anvil at sunset, beside the conversation](assets/preview.png)
+<p align="center"><img src="assets/preview.png" width="600" alt="Block Shift: the mascot hammering at the anvil at sunset, above the mine"></p>
 
 ## Install
 
