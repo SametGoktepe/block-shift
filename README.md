@@ -39,7 +39,11 @@ The theme shows in local sessions of the desktop and mobile apps. The terminal a
 | hitting an error | jumps back as a stone block collapses |
 | done | raises its pickaxe and celebrates |
 
+![The twelve scenes, from idle to done](assets/states.png)
+
 The sky changes with your local time: morning (06–10), day (10–16), sunset (16–19) and evening (19–06), each in a light and a dark version that follows your system appearance. Below the grass lies a mine full of ore veins and a gallery under the miner's camp.
+
+![The four skies in light and dark mode, as they sit behind the app](assets/skies.png)
 
 ## Commands
 
