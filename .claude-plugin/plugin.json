@@ -1,0 +1,15 @@
+{
+  "name": "block-shift",
+  "version": "0.1.0",
+  "description": "A block-world theme for the Claude Code desktop app: earthy colours and a living backdrop where a little miner acts out what the agent is doing.",
+  "author": {
+    "name": "Samet Göktepe"
+  },
+  "license": "MIT",
+  "keywords": [
+    "theme",
+    "mod",
+    "pixel-art",
+    "backdrop"
+  ]
+}

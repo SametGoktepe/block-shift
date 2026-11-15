@@ -1,0 +1,13 @@
+{
+  "name": "block-shift",
+  "owner": {
+    "name": "Samet Göktepe"
+  },
+  "plugins": [
+    {
+      "name": "block-shift",
+      "source": "./",
+      "description": "A block-world theme for the Claude Code desktop app with a mascot that acts out what the agent is doing."
+    }
+  ]
+}
