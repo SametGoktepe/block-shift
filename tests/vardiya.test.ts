@@ -109,7 +109,7 @@ test('the backdrop follows the agent', async ($, on) => {
   await $.tool.call(PUSH)
   expect(await alt()).toBe(sceneAlt('push'))
 
-  // Back to thinking only once the push scene has had its minimum time.
+  // The scene stays until the next tool call or the end of the turn.
   await clock.advance(MIN_DWELL_MS)
-  expect(await alt()).toBe(sceneAlt('thinking'))
+  expect(await alt()).toBe(sceneAlt('push'))
 })

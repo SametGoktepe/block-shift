@@ -86,12 +86,12 @@ async function applyLook($: EngineInterface): Promise<string> {
 
 export const register: Register = on => {
   on('session.start', async ($, e, next) => {
-    await $.command.register({ name: COMMAND, description: 'Block Shift: /shift play | pause | off' })
-    const stored = await $.store.get(STORE_KEY)
-    const now = await $.clock.now()
+    // The look goes first: everything else can wait until the backdrop is on its way.
+    const [stored, now] = await Promise.all([$.store.get(STORE_KEY), $.clock.now()])
 
     live = { ...live, mode: isMode(stored) ? stored : 'play', period: periodAt(new Date(now).getHours()), since: now }
     if (live.mode !== 'off') await applyLook($)
+    await $.command.register({ name: COMMAND, description: 'Block Shift: /shift play | pause | off' })
 
     $.clock.every(PERIOD_CHECK_MS, () => {
       void $.clock.now().then(at => {
@@ -125,12 +125,13 @@ export const register: Register = on => {
     const ran = await next(e)
     const hasFailed = ran.deny === undefined && ran.isError === true
 
+    // The scene stays until the next tool call or the turn's end: every scene
+    // change sends the whole drawing again, so a busy turn must not double them.
     if (hasFailed) {
       live = { ...live, isBroken: true }
       await show($, 'failure')
-    } else {
-      if (e.tool === 'Bash' && ran.deny === undefined) live = { ...live, isBroken: false }
-      await show($, 'thinking')
+    } else if (e.tool === 'Bash' && ran.deny === undefined) {
+      live = { ...live, isBroken: false }
     }
 
     return ran
@@ -143,7 +144,9 @@ export const register: Register = on => {
     const { Svg } = $.ui.resolve(e)
     const source = sceneSvg({ scene: live.scene, period: live.period, isStill: live.mode === 'pause', helpers: clampHelpers(live.agents) })
 
-    return <Svg source={source} alt={sceneAlt(live.scene)} isInteractive />
+    // An image, not an interactive frame: it shows sooner and a redraw doesn't
+    // rebuild a sandboxed frame. CSS animation runs in an SVG image too.
+    return <Svg source={source} alt={sceneAlt(live.scene)} />
   })
 
   on('command.run', { command: COMMAND }, async ($, e) => {
