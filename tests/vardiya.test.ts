@@ -79,6 +79,14 @@ test('the camp stands left of the text column', async () => {
   expect(stageX + 128).toBeLessThan(160)
 })
 
+test('the ground stays still: no colour shares a name with a motion', async () => {
+  const svg = sceneSvg({ scene: 'push', period: 'gunduz', helpers: 3, isStill: false })
+
+  expect(/\.c[0-9a-z]+\{animation/.test(svg)).toBe(false)
+  // The push cart still rolls.
+  expect(svg.includes('<g class="mc">') && svg.includes('.mc{animation')).toBe(true)
+})
+
 test('the desktop app paints the colours', async () => {
   expect(unpainted).toBe(undefined)
 })

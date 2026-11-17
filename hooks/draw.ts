@@ -101,7 +101,8 @@ const MOTION = [
   '@keyframes em{0%{transform:translateY(0);opacity:1}to{transform:translateY(-12px);opacity:0}}',
   '.em{animation:em 1440ms steps(6,end) infinite}.em2{animation-delay:-700ms}',
   '@keyframes sc{to{transform:translateX(-48px)}}.sc{animation:sc 1920ms steps(48,end) infinite}',
-  '@keyframes ct{from{transform:translateX(-224px)}to{transform:translateX(136px)}}.ct{animation:ct 7200ms steps(180,end) infinite}',
+  // Motion classes never start with "c": that prefix belongs to the colour classes above.
+  '@keyframes mc{from{transform:translateX(-224px)}to{transform:translateX(136px)}}.mc{animation:mc 7200ms steps(180,end) infinite}',
   '@keyframes ln{from{transform:translateX(-270px)}to{transform:translateX(150px)}}.ln{animation:ln 8400ms steps(210,end) infinite}',
   '@media (prefers-reduced-motion:reduce){*{animation:none!important}}',
 ].join('')

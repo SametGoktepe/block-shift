@@ -163,7 +163,7 @@ export function overlay(scene: Scene, helperCount: number): string {
       .join('')
 
   return (
-    (scene === 'push' ? rail(0, WIDTH, GROUND) + group(cart(200, GROUND - 14), 'ct') : '') +
+    (scene === 'push' ? rail(0, WIDTH, GROUND) + group(cart(200, GROUND - 14), 'mc') : '') +
     (helperCount > 0 ? group(frames([line(false), line(true)], 160), 'ln') : '')
   )
 }
